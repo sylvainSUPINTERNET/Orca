@@ -52,8 +52,8 @@ mongoose.connect('mongodb://localhost/orca')
   });
 
 passport.use(new GitHubStrategy({
-    clientID: '8a81d2b182813341e6c1',
-    clientSecret: "dbf881ff3019fbd70caa01fa10d73a70a883e504",
+    clientID: '',
+    clientSecret: "",
     callbackURL: "http://localhost:8000/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
@@ -93,7 +93,7 @@ app.get('/auth/github', passport.authenticate('github'));
   //passport.authentificate => sert a ouvrir 'autoriser l'app blabla' si fail redirect sur /login
 app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/successConnected', {user_infos: req.users, message:"Successfully connected !"});
+    res.redirect('/successConnected');
   });
 
 
